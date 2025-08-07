@@ -9,12 +9,17 @@ class PiGood:
         self.index = 2  # Start after the "3."
 
     def get_next_100_digits(self):
-        # Get the next 100 digits of Pi, keeping "3." at the beginning
+        # Get the next 100 digits of Pi without the "3."
         start = self.index
-        end = start + 100  # We need exactly 100 digits of Pi after "3."
-        block = self.pi[start:end]  # Extract the next 100 digits
+        end = start + 100  # Extract exactly 100 digits of Pi
+        block = self.pi[start:end]  # Get the next 100 digits
         self.index += 100  # Move index forward for the next call
-        return f"3.{block}"
+
+        # Return the first 100 digits, including "3." on the first call
+        if start == 2:  # For the first call, include "3."
+            return f"3.{block}"
+        else:
+            return block
 
 # Example Usage:
 if __name__ == "__main__":
