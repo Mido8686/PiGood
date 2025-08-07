@@ -25,8 +25,11 @@ def main():
         # Slice out only the newly generated digits
         new_digits = pi_digits[start:]
         
-        # Print only the newly generated digits
-        print(new_digits)
+        # If it's the first batch, print "3." followed by the digits
+        if total_digits_generated <= digits_per_request:
+            print("3." + new_digits)
+        else:
+            print(new_digits)
 
 if __name__ == "__main__":
     main()
