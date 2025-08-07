@@ -2,21 +2,27 @@ import mpmath
 
 class PiGood:
     def __init__(self):
-        # Set mpmath to a very high precision. 
-        mpmath.mp.dps = 1000000  # You can set this to a very high number for indefinite generation
-        # Get Pi as a string, including "3."
+        # Set initial precision
+        self.dps = 100000  # Starting with 100,000 digits
+        mpmath.mp.dps = self.dps  # Set precision
         self.pi = str(mpmath.pi)
         self.index = 2  # Start after the "3."
 
     def get_next_100_digits(self):
         # Get the next 100 digits of Pi
         start = self.index
-        end = start + 100  # Extract exactly 100 digits of Pi
-        block = self.pi[start:end]  # Get the next 100 digits
-        self.index += 100  # Move index forward for the next call
-        
+        end = start + 100
+        block = self.pi[start:end]
+        self.index += 100
+
+        # If precision is too low, increase it for next digits
+        if self.index > len(self.pi) - 100:
+            self.dps += 100000  # Increase precision in steps of 100,000
+            mpmath.mp.dps = self.dps
+            self.pi = str(mpmath.pi)  # Recalculate Pi with new precision
+
         # On the first call, include "3." and the next 100 digits
-        if self.index == 102:  # The first set includes "3."
+        if self.index == 102:
             return f"3.{block}"
         else:
             return block
