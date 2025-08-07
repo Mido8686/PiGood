@@ -9,9 +9,9 @@ class PiGood:
         self.index = 2  # Start after the "3."
 
     def get_next_100_digits(self):
-        # Get the next 100 digits of Pi (excluding the ".")
+        # Get the next 100 digits of Pi, keeping "3." at the beginning
         start = self.index
-        end = start + 100  # We need exactly 100 digits of Pi
+        end = start + 100  # We need exactly 100 digits of Pi after "3."
         block = self.pi[start:end]  # Extract the next 100 digits
         self.index += 100  # Move index forward for the next call
         return f"3.{block}"
