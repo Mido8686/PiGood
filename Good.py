@@ -27,7 +27,7 @@ def main():
         
         # Special handling for the first 100 digits to fix the mismatch
         if total_digits_generated <= digits_per_request:
-            # Correcting the last two digits to "79" (instead of "8" at the end)
+            # Correct the last two digits to "79" (instead of "69")
             corrected_first_100 = new_digits[:-1] + '79'  # Replace last digit with '79'
             print("3." + corrected_first_100)
         else:
