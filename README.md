@@ -14,6 +14,8 @@
 - **mpmath** library for arbitrary-precision arithmetic.
 
 Download [Good.py](https://github.com/Mido8686/PiGood/blob/main/Good.py)
+
+then install `mpmath`
 ```bash
    pip install mpmath
 ```
