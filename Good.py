@@ -2,8 +2,8 @@ import mpmath
 
 class PiGood:
     def __init__(self):
-        # Set mpmath precision to a large number (10000 decimal places)
-        mpmath.mp.dps = 10000
+        # Set mpmath to a very high precision. 
+        mpmath.mp.dps = 1000000  # You can set this to a very high number for indefinite generation
         # Get Pi as a string, including "3."
         self.pi = str(mpmath.pi)
         self.index = 2  # Start after the "3."
