@@ -2,8 +2,8 @@ import mpmath
 
 # Set the number of digits you want to calculate
 def generate_pi(digits: int):
-    mpmath.mp.dps = digits + 1  # Set precision (1 extra digit to ensure rounding is handled correctly)
-    pi_value = str(mpmath.mp.pi)[2:]  # Get the value of Pi to the specified precision, removing the '3.'
+    mpmath.mp.dps = digits + 1  # Set precision (one extra digit to ensure rounding is correct)
+    pi_value = str(mpmath.mp.pi)[2:]  # Get Pi digits as a string, removing the "3."
     return pi_value
 
 def main():
@@ -15,10 +15,11 @@ def main():
     while True:
         input(f"Press Enter to generate next {digits_per_request} digits of Pi...")
         # Append the next batch of digits to the generated digits
-        generated_digits += generate_pi(digits_per_request)
+        new_digits = generate_pi(digits_per_request)
+        generated_digits += new_digits  # Only append the newly generated digits
         
         # Print only the newly generated digits
-        print(generated_digits[-digits_per_request:])  # This will print only the most recent 100 digits
+        print(new_digits)
 
 if __name__ == "__main__":
     main()
