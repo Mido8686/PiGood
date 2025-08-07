@@ -1,37 +1,30 @@
 import mpmath
 
-# Set the number of digits you want to calculate
-def generate_pi(digits: int):
-    mpmath.mp.dps = digits + 1  # Set precision (one extra digit to ensure rounding is correct)
-    pi_value = str(mpmath.mp.pi)[2:]  # Get Pi digits as a string, removing the "3."
-    return pi_value
+class PiGood:
+    def __init__(self):
+        # Set up mpmath to calculate Pi to a large number of digits
+        mpmath.mp.dps = 1000  # Set the precision to get a large number of digits
+        self.pi = str(mpmath.pi)[2:]  # Get Pi digits as a string, remove "3."
+        self.index = 0  # Start index to return the next block of 100 digits
 
-def main():
-    print("PiGood: Generating Pi digits endlessly... (Ctrl+C to stop)")
-
-    digits_per_request = 100  # Number of digits to generate per request
-    total_digits_generated = 0  # Track the total number of digits generated so far
-
-    while True:
-        input(f"Press Enter to generate next {digits_per_request} digits of Pi...")
-        
-        # Calculate the starting point to avoid repetition
-        start = total_digits_generated
-        total_digits_generated += digits_per_request
-        
-        # Generate the total number of digits we need so far
-        pi_digits = generate_pi(total_digits_generated)
-        
-        # Slice out only the newly generated digits
-        new_digits = pi_digits[start:]
-        
-        # Special handling for the first 100 digits to fix the mismatch
-        if total_digits_generated <= digits_per_request:
-            # Correct the last two digits to "79" (instead of "69")
-            corrected_first_100 = new_digits[:-1] + '79'  # Replace last digit with '79'
-            print("3." + corrected_first_100)
+    def get_next_100_digits(self):
+        # Get the next block of 100 digits
+        start = self.index
+        end = start + 100
+        if end <= len(self.pi):
+            block = self.pi[start:end]
+            self.index += 100  # Move the index forward
+            return block
         else:
-            print(new_digits)
+            return None  # If no more digits are available
 
-if __name__ == "__main__":
-    main()
+# Example Usage:
+pi_good = PiGood()
+
+# Get the first 100 digits
+print(pi_good.get_next_100_digits())
+
+# Get the next 100 digits
+print(pi_good.get_next_100_digits())
+
+# Continue calling pi_good.get_next_100_digits() to get further digits
