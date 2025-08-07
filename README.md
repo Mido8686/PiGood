@@ -2,6 +2,7 @@
 
 **PiGood** is a simple Python program that generates digits of Pi endlessly, allowing users to view the digits of Pi one by one on their console. It's designed to run indefinitely until you manually stop it, making it a fun tool for exploring Pi's infinite nature.
 
+Note: PiGood uses the actual Pi digits and does not generate Pi digits
 ## Features
 
 - Generates Pi digits endlessly.
