@@ -4,12 +4,12 @@ class PiGood:
     def __init__(self):
         # Set mpmath precision to a large number (10000 decimal places)
         mpmath.mp.dps = 10000
-        # Get Pi as a string and remove the leading '3.'
-        self.pi = str(mpmath.pi)[2:]  
-        self.index = 0  # Start from the first digit after the decimal point
+        # Get Pi as a string and include "3."
+        self.pi = str(mpmath.pi)
+        self.index = 2  # Start from the first digit after the decimal point
 
     def get_next_100_digits(self):
-        # Get the next 100 digits of Pi from the current index
+        # Get the next 100 digits of Pi, including "3."
         start = self.index
         end = start + 100
         block = self.pi[start:end]  # Get the substring of 100 digits
