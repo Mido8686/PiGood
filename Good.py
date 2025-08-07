@@ -19,8 +19,11 @@ def main():
         start = total_digits_generated
         total_digits_generated += digits_per_request
         
-        # Generate only the next batch of digits
-        new_digits = generate_pi(total_digits_generated)[start:]
+        # Generate the total number of digits we need so far
+        pi_digits = generate_pi(total_digits_generated)
+        
+        # Slice out only the newly generated digits
+        new_digits = pi_digits[start:]
         
         # Print only the newly generated digits
         print(new_digits)
