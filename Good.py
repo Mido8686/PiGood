@@ -10,12 +10,17 @@ def main():
     print("PiGood: Generating Pi digits endlessly... (Ctrl+C to stop)")
 
     digits_per_request = 100  # Number of digits to generate per request
-    
+    total_digits_generated = 0  # Track the total number of digits generated so far
+
     while True:
         input(f"Press Enter to generate next {digits_per_request} digits of Pi...")
         
-        # Generate the next batch of digits
-        new_digits = generate_pi(digits_per_request)
+        # Calculate the starting point to avoid repetition
+        start = total_digits_generated
+        total_digits_generated += digits_per_request
+        
+        # Generate only the next batch of digits
+        new_digits = generate_pi(total_digits_generated)[start:]
         
         # Print only the newly generated digits
         print(new_digits)
